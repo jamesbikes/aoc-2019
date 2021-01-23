@@ -115,3 +115,14 @@
 
 ; part 1
 (count (paint-it memory 0))
+
+; part 2
+(def part2
+    (let [grid (paint-it memory 1)
+        xs (map first (keys grid))
+        ys (map second (keys grid))]
+        (for [y (range (apply max ys) (dec (apply min ys)) -1)]
+        (apply str (for [x (range (apply min xs) (inc (apply max xs)))]
+            (case (get grid [x y] 0) 0 \ , 1 \#))))))
+
+(doseq [$ part2] (println $))
